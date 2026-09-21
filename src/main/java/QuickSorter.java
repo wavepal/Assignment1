@@ -1,3 +1,5 @@
+package main.java;
+
 import java.util.concurrent.ThreadLocalRandom;
 
 public class QuickSorter {

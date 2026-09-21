@@ -1,3 +1,5 @@
+package main.java;
+
 public class MergeSorter {
     private static final int INSERTION_SORT_CUTOFF = 16;
 

@@ -1,3 +1,5 @@
+package main.java;
+
 public class DeterministicSelector {
 //    This is "Median-of-Medians" algorithm using groups of 5
 //    This method returns k-th element in sorted order (0-based)
