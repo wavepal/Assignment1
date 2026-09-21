@@ -2,9 +2,12 @@ package main.java;
 
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.IdentityHashMap;
+import java.util.Set;
+import java.util.Collections;
 
 public class ClosestPairSolver {
-//    divide-and-conquer
+
     private long comparisons;
     private long recursiveCalls;
     private int maxRecursionDepth;
@@ -14,6 +17,7 @@ public class ClosestPairSolver {
     private double bestDistanceSquared;
 
     public double solve(Point[] points) {
+
         comparisons = 0;
         recursiveCalls = 0;
         maxRecursionDepth = 0;
@@ -51,9 +55,15 @@ public class ClosestPairSolver {
         return Math.sqrt(bestDistanceSquared);
     }
 
-    private void closestPair(Point[] pointsByX, Point[] pointsByY, int left, int right, int depth) {
+    private void closestPair(
+            Point[] pointsByX,
+            Point[] pointsByY,
+            int left,
+            int right,
+            int depth) {
 
         recursiveCalls++;
+
         maxRecursionDepth = Math.max(maxRecursionDepth, depth);
 
         int n = right - left + 1;
@@ -63,29 +73,51 @@ public class ClosestPairSolver {
             return;
         }
 
-        int mid = left + (right - left) / 2;
+        int mid =
+                left + (right - left) / 2;
 
-        double midX = pointsByX[mid].x;
+        double midX =
+                pointsByX[mid].x;
 
-        Point[] leftX = Arrays.copyOfRange(pointsByX, left, mid + 1);
+        Point[] leftX =
+                Arrays.copyOfRange(
+                        pointsByX,
+                        left,
+                        mid + 1
+                );
 
-        Point[] rightX = Arrays.copyOfRange(pointsByX, mid + 1, right + 1);
+        Point[] rightX =
+                Arrays.copyOfRange(
+                        pointsByX,
+                        mid + 1,
+                        right + 1
+                );
+
+        Set<Point> leftSet =
+                Collections.newSetFromMap(
+                        new IdentityHashMap<>()
+                );
+
+        for (Point point : leftX) {
+            leftSet.add(point);
+        }
 
         Point[] leftY = new Point[leftX.length];
+
         Point[] rightY = new Point[rightX.length];
 
         int leftCount = 0;
         int rightCount = 0;
 
-        for (Point p : pointsByY) {
+        for (Point point : pointsByY) {
 
-            if (p.x < midX ||
-                    (p.x == midX && belongsToLeft(p, leftX))) {
+            if (leftSet.contains(point)) {
 
-                leftY[leftCount++] = p;
+                leftY[leftCount++] = point;
 
             } else {
-                rightY[rightCount++] = p;
+
+                rightY[rightCount++] = point;
             }
         }
 
@@ -108,18 +140,17 @@ public class ClosestPairSolver {
         double delta = Math.sqrt(bestDistanceSquared);
 
         Point[] strip = new Point[pointsByY.length];
+
         int stripSize = 0;
 
-        for (Point p : pointsByY) {
+        for (Point point : pointsByY) {
+            if (Math.abs(point.x - midX) < delta) {
 
-            if (Math.abs(p.x - midX) < delta) {
-                strip[stripSize++] = p;
+                strip[stripSize++] = point;
             }
         }
 
-        // pointsByY already sorted by y
         for (int i = 0; i < stripSize; i++) {
-
             for (int j = i + 1;
                  j < stripSize &&
                          strip[j].y - strip[i].y < delta;
@@ -127,51 +158,51 @@ public class ClosestPairSolver {
 
                 comparisons++;
 
-                updateBestPair(strip[i], strip[j]);
+                updateBestPair(
+                        strip[i],
+                        strip[j]
+                );
 
                 delta = Math.sqrt(bestDistanceSquared);
             }
         }
     }
 
-    private boolean belongsToLeft(Point p, Point[] leftX) {
-
-        for (Point point : leftX) {
-            if (point == p) {
-                return true;
-            }
-        }
-
-        return false;
-    }
-
-    private void bruteForce(Point[] points, int left, int right) {
+    private void bruteForce(
+            Point[] points,
+            int left,
+            int right) {
 
         for (int i = left; i <= right; i++) {
 
-            for (int j = i + 1; j <= right; j++) {
+            for (int j = i + 1;
+                 j <= right;
+                 j++) {
 
                 comparisons++;
 
-                updateBestPair(points[i], points[j]);
+                updateBestPair(
+                        points[i],
+                        points[j]
+                );
             }
         }
     }
 
-    private void updateBestPair(Point a, Point b) {
+    private void updateBestPair(
+            Point a,
+            Point b) {
 
-        double distanceSquared =
-                a.distanceSquared(b);
+        double distanceSquared = a.distanceSquared(b);
 
         if (distanceSquared < bestDistanceSquared) {
 
             bestDistanceSquared = distanceSquared;
+
             bestPoint1 = a;
             bestPoint2 = b;
         }
     }
-
-//    returns
 
     public Point getBestPoint1() {
         return bestPoint1;

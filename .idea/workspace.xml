@@ -5,15 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3b9ac971-1f08-4391-be52-52f85f2b8cad" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/tests/java/ClosestPairTester.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/main/java/ClosestPairSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/main/java/ClosestPairSolver.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/main/java/DeterministicSelector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/main/java/DeterministicSelector.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/results.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ClosestPairSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClosestPairSolver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/DeterministicSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DeterministicSelector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Experiment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Experiment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/MergeSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/MergeSorter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Point.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/QuickSorter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/QuickSorter.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -40,6 +37,10 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ClosestPairTester.executor": "Run",
+    "Application.DeterministicSelectTester.executor": "Run",
+    "Application.Main.executor": "Run",
+    "Application.MergeSortTester.executor": "Run",
     "Application.QuickSortTester.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -62,6 +63,9 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mazhi\IdeaProjects\Assignment1\tests\java" />
       <recent name="C:\Users\mazhi\IdeaProjects\Assignment1\src\main" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager">
