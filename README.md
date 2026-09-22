@@ -38,11 +38,35 @@ Insertion sort on tiny pieces does not change the big-O. Sorted input is faster 
 
 **Recurrence and Master Theorem.**
 
-\[
-T(n) = 2T(n/2) + \Theta(n)
-\]
+The recurrence is:
 
-Here *a* = 2, *b* = 2, so \(\log_b a = 1\). The work outside recursion is \(f(n) = \Theta(n) = \Theta(n^{\log_b a})\). This is **Case 2** of the Master Theorem, so \(T(n) = \Theta(n \log n)\). Recursion depth is about \(\log_2 n\).
+$$
+T(n) = 2T\left(\frac{n}{2}\right) + \Theta(n)
+$$
+
+Here, $a = 2$ and $b = 2$, so:
+
+$$
+\log_b a = \log_2 2 = 1
+$$
+
+The work outside the recursion is:
+
+$$
+f(n) = \Theta(n) = \Theta\left(n^{\log_b a}\right)
+$$
+
+This is Case 2 of the Master Theorem, so:
+
+$$
+T(n) = \Theta(n \log n)
+$$
+
+The recursion depth is approximately:
+
+$$
+\log_2 n
+$$
 
 ### 2. QuickSort (random pivot, smaller-first)
 
