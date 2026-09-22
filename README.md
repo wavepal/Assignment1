@@ -38,8 +38,6 @@ Insertion sort on tiny pieces does not change the big-O. Sorted input is faster 
 
 **Recurrence and Master Theorem.**
 
-The recurrence is:
-
 $$
 T(n) = 2T\left(\frac{n}{2}\right) + \Theta(n)
 $$
@@ -82,14 +80,26 @@ A random index becomes the pivot. Partition puts smaller-or-equal values on the 
 
 The smaller-first trick does **not** change the running time. It only limits the recursion depth.
 
-**Recurrence.**  
+**Recurrence.**
+
 After partition of size *n*, if the pivot rank is *q*:
 
-\[
+$$
 T(n) = T(q) + T(n-q-1) + \Theta(n)
-\]
+$$
 
-For a random pivot, the expected cost is \(T(n) = \Theta(n \log n)\). In the worst case (very unbalanced splits, for example many duplicates with `≤` partition), one side is almost empty and \(T(n) \approx T(n-1) + \Theta(n) = \Theta(n^2)\).
+For a random pivot, the expected cost is:
+
+$$
+T(n) = \Theta(n \log n)
+$$
+
+In the worst case, with very unbalanced splits (for example, many duplicates with a `≤` partition), one side is almost empty:
+
+$$
+T(n) \approx T(n-1) + \Theta(n) = \Theta(n^2)
+$$
+
 
 Master Theorem does not apply directly because the split is not always *n*/2. Intuition from Akra–Bazzi: if splits stay near the middle on average, the “p-root” is 1 and extra work *n* gives \(n \log n\). If one split is always tiny, you get quadratic time.
 
@@ -111,20 +121,29 @@ To find the *k*-th smallest element:
 
 **Recurrence and Akra–Bazzi.**
 
-\[
-T(n) \le T(n/5) + T(7n/10) + \Theta(n)
-\]
+$$
+T(n) \le T\left(\frac{n}{5}\right) + T\left(\frac{7n}{10}\right) + \Theta(n)
+$$
 
-- \(T(n/5)\): median of medians (about *n*/5 group medians).
-- \(T(7n/10)\): after a good pivot, at least about 30% of elements are thrown away, so at most 70% remain.
+* $T(n/5)$: median of medians (about *n*/5 group medians).
+* $T(7n/10)$: after a good pivot, at least about 30% of elements are thrown away, so at most 70% remain.
 
-Akra–Bazzi (simple check): for *p* = 1,
+Akra–Bazzi (simple check): for $p = 1$,
 
-\[
-(1/5)^1 + (7/10)^1 = 0.2 + 0.7 = 0.9 < 1
-\]
+$$
+\left(\frac{1}{5}\right)^1 + \left(\frac{7}{10}\right)^1
+= 0.2 + 0.7
+= 0.9 < 1
+$$
 
-So the solution is **linear**: \(T(n) = \Theta(n)\). The Master Theorem with equal halves does not fit here, because the two recursive sizes are different.
+So the solution is **linear**:
+
+$$
+T(n) = \Theta(n)
+$$
+
+The Master Theorem with equal halves does not fit here, because the two recursive sizes are different.
+
 
 ### 4. Closest Pair of Points
 
@@ -140,11 +159,21 @@ Points are sorted by *x* and by *y*. The set is split by a vertical line. The al
 
 **Recurrence and Master Theorem.**
 
-\[
-T(n) = 2T(n/2) + \Theta(n)
-\]
+$$
+T(n) = 2T\left(\frac{n}{2}\right) + \Theta(n)
+$$
 
-Same as MergeSort: **Case 2**, \(T(n) = \Theta(n \log n)\). The strip check is O(*n*) because each point has only a constant number of candidates. Recursion depth is Θ(log *n*).
+Same as MergeSort: Case 2,
+
+$$
+T(n) = \Theta(n \log n)
+$$
+
+The strip check is $O(n)$ because each point has only a constant number of candidates. Recursion depth is:
+
+$$
+\Theta(\log n)
+$$
 
 For large *n*, Θ(*n* log *n*) is much faster than Θ(*n*²). Example: for *n* = 100,000, *n*² is about 10¹⁰ pair checks, while *n* log *n* is only a few million operations plus sorting.
 
@@ -258,7 +287,17 @@ Sorted arrays help MergeSort a lot (skip merge). Random pivot QuickSort still wo
 The larger part is processed in a loop. The recursive call is always on a piece of size at most *n*/2. So the stack depth is O(log *n*) even when the split is bad. Without this, a bad split can make depth Θ(*n*) and can crash the JVM with `StackOverflowError`. Time can still be Θ(*n*²); only the stack is protected.
 
 **Why does Median-of-Medians guarantee O(*n*)?**  
-The pivot is not random. At least about 30% of elements are on the wrong side of the median-of-medians and can be discarded. Together with a linear scan (groups of 5 + partition), the recurrence \(T(n) \le T(n/5) + T(7n/10) + O(n)\) has a solution that is linear, as Akra–Bazzi shows (\(0.2 + 0.7 < 1\)).
+The pivot is not random. At least about 30% of elements are on the wrong side of the median-of-medians and can be discarded. Together with a linear scan (groups of 5 + partition), the recurrence
+
+$$
+T(n) \le T\left(\frac{n}{5}\right) + T\left(\frac{7n}{10}\right) + O(n)
+$$
+
+has a solution that is linear, as Akra–Bazzi shows:
+
+$$
+0.2 + 0.7 < 1
+$$
 
 **Why is divide-and-conquer Closest Pair faster than O(*n*²) for large inputs?**  
 Brute force checks every pair. Divide-and-conquer only checks all pairs in tiny blocks and a strip. In the strip, *y*-order limits the inner loop to a constant number of neighbours. So extra work per level is O(*n*), and there are O(log *n*) levels.
