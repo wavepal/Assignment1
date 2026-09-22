@@ -9,9 +9,7 @@ public class ClosestPairTester {
 
     public static void runTests() {
 
-        System.out.println(
-                "Testing Closest Pair..."
-        );
+        System.out.println("Testing Closest Pair...");
 
         int[] smallSizes = {
                 2,
@@ -25,13 +23,14 @@ public class ClosestPairTester {
                 2000
         };
 
-        //For n <= 2000:
+        int testNumber = 1;
+
+        // Tests for n <= 2000
         for (int size : smallSizes) {
 
             for (int test = 0; test < 5; test++) {
 
-                Point[] points =
-                        generateRandomPoints(size);
+                Point[] points = generateRandomPoints(size);
 
                 double expected =
                         bruteForceClosestPair(points);
@@ -39,13 +38,33 @@ public class ClosestPairTester {
                 ClosestPairSolver solver =
                         new ClosestPairSolver();
 
+                long start = System.nanoTime();
+
                 double actual =
                         solver.solve(points);
 
+                long end = System.nanoTime();
+
+                double timeMs =
+                        (end - start) / 1_000_000.0;
+
                 assertEqual(
                         expected,
-                        actual
+                        actual,
+                        testNumber,
+                        size,
+                        "RANDOM"
                 );
+
+                System.out.printf(
+                        "Test #%3d | %-6s | size: %5d | time: %8.3f ms | PASS%n",
+                        testNumber,
+                        "RANDOM",
+                        size,
+                        timeMs
+                );
+
+                testNumber++;
             }
         }
 
@@ -60,14 +79,38 @@ public class ClosestPairTester {
         ClosestPairSolver solver =
                 new ClosestPairSolver();
 
+        long duplicateStart = System.nanoTime();
+
         double result =
                 solver.solve(duplicatePoints);
 
+        long duplicateEnd = System.nanoTime();
+
+        double duplicateTime =
+                (duplicateEnd - duplicateStart) / 1_000_000.0;
+
         if (result != 0.0) {
+            System.out.printf(
+                    "Test #%3d | %-6s | size: %5d | FAILED%n",
+                    testNumber,
+                    "DUPLICATE",
+                    duplicatePoints.length
+            );
+
             throw new AssertionError(
                     "Duplicate point test failed"
             );
         }
+
+        System.out.printf(
+                "Test #%3d | %-9s | size: %5d | time: %8.3f ms | PASS%n",
+                testNumber,
+                "DUPLICATE",
+                duplicatePoints.length,
+                duplicateTime
+        );
+
+        testNumber++;
 
         // Large dataset
         Point[] largePoints =
@@ -80,21 +123,32 @@ public class ClosestPairTester {
 
         long end = System.nanoTime();
 
+        double largeTime =
+                (end - start) / 1_000_000.0;
+
         if (!Double.isFinite(largeResult)) {
+            System.out.printf(
+                    "Test #%3d | %-6s | size: %5d | FAILED%n",
+                    testNumber,
+                    "LARGE",
+                    largePoints.length
+            );
+
             throw new AssertionError(
                     "Closest Pair failed on large dataset"
             );
         }
 
-        System.out.println(
-                "Closest Pair: PASSED"
+        System.out.printf(
+                "Test #%3d | %-6s | size: %5d | time: %8.3f ms | PASS%n",
+                testNumber,
+                "LARGE",
+                largePoints.length,
+                largeTime
         );
 
-        System.out.println(
-                "Large test: 100000 points, " +
-                        (end - start) +
-                        " ns"
-        );
+        System.out.println();
+        System.out.println("Closest Pair: ALL TESTS PASSED");
     }
 
     private static double bruteForceClosestPair(
@@ -129,15 +183,24 @@ public class ClosestPairTester {
 
     private static void assertEqual(
             double expected,
-            double actual) {
+            double actual,
+            int testNumber,
+            int size,
+            String type) {
 
         double epsilon = 1e-9;
 
         if (Math.abs(expected - actual) > epsilon) {
 
+            System.out.printf(
+                    "Test #%3d | %-6s | size: %5d | FAILED%n",
+                    testNumber,
+                    type,
+                    size
+            );
+
             throw new AssertionError(
-                    "Closest Pair failed.\n" +
-                            "Expected: " + expected +
+                    "Expected: " + expected +
                             "\nActual: " + actual
             );
         }

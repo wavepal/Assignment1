@@ -6,11 +6,14 @@
   <component name="ChangeListManager">
     <list default="true" id="3b9ac971-1f08-4391-be52-52f85f2b8cad" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/main/java/ClosestPairSolver.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/main/java/ClosestPairSolver.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Assignment1/main/java/DeterministicSelector.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Assignment1/main/java/DeterministicSelector.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/results.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/results.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ClosestPairSolver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ClosestPairSolver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/DeterministicSelector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/DeterministicSelector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/MergeSort Test/Program output.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Assignment1/ClosestPairTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Assignment1/ClosestPairTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Assignment1/DeterministicSelectTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Assignment1/DeterministicSelectTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/Assignment1/QuickSortTester.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/Assignment1/QuickSortTester.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/ClosestPairTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/ClosestPairTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/DeterministicSelectTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/DeterministicSelectTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/MergeSortTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/MergeSortTester.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/QuickSortTester.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/QuickSortTester.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,30 +38,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.ClosestPairTester.executor": "Run",
-    "Application.DeterministicSelectTester.executor": "Run",
-    "Application.Main.executor": "Run",
-    "Application.MergeSortTester.executor": "Run",
-    "Application.QuickSortTester.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/mazhi/IdeaProjects/Assignment1",
-    "node.js.detected.package.jshint": "true",
-    "node.js.selected.package.jshint": "",
-    "onboarding.tips.debug.path": "C:/Users/mazhi/IdeaProjects/Assignment1/src/Main.java",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "python.packages.toolwindow.project.migrated.to.right.top.v2": "true",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.ClosestPairTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.DeterministicSelectTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MergeSortTester.executor&quot;: &quot;Run&quot;,
+    &quot;Application.QuickSortTester.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/mazhi/IdeaProjects/Assignment1&quot;,
+    &quot;node.js.detected.package.jshint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.jshint&quot;: &quot;&quot;,
+    &quot;onboarding.tips.debug.path&quot;: &quot;C:/Users/mazhi/IdeaProjects/Assignment1/src/Main.java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;python.packages.toolwindow.project.migrated.to.right.top.v2&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.keymap&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\mazhi\IdeaProjects\Assignment1\tests\java" />
@@ -67,57 +70,6 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
     </key>
-  </component>
-  <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Assignment1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Assignment1" />
-      <option name="filePath" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="PythonConfigurationType" factoryName="Python">
-      <module name="Assignment1" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <option name="RUN_TOOL" value="" />
-      <option name="SCRIPT_NAME" value="" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="Tox" factoryName="Tox">
-      <module name="Assignment1" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="DEBUG_JUST_MY_CODE" value="false" />
-      <option name="RUN_TOOL" value="" />
-      <method v="2" />
-    </configuration>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -140,5 +92,16 @@
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>
