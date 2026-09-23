@@ -1,6 +1,6 @@
 # Assignment 1: Divide-and-Conquer Algorithms
 
-This report describes a Java project with four classic divide-and-conquer algorithms. The language in this document is simple (B1 English).
+This report describes a Java project with four classic divide-and-conquer algorithms.
 
 ---
 
@@ -8,7 +8,7 @@ This report describes a Java project with four classic divide-and-conquer algori
 
 ### Purpose of the assignment
 
-The goal of this assignment is to implement, test and compare four divide-and-conquer algorithms. For each algorithm I measure running time, recursion depth, and extra metrics (comparisons, swaps, recursive calls). I also check if the experimental results match the theory (Big-O, recurrences, Master Theorem / Akra–Bazzi).
+The goal of this assignment is to implement, test and compare four divide-and-conquer algorithms. For each algorithm I measure running time, recursion depth and extra metrics (comparisons, swaps, recursive calls). I also check if the experimental results match the theory (Big-O, recurrences, Master-Theorem/Akra–Bazzi).
 
 The program writes results to `results/results.csv`. I ran tests on different input sizes and input types: random, sorted, reverse-sorted, and duplicate-heavy.
 
@@ -26,7 +26,7 @@ The program writes results to `results/results.csv`. I ran tests on different in
 ### 1. MergeSort
 
 **How it works.**  
-The algorithm splits the array into two halves, sorts each half, and then merges them. If the current piece is small (length ≤ 16), it uses insertion sort. If `array[middle] ≤ array[middle + 1]`, the two halves are already sorted, so merge is not needed.
+The algorithm splits the array into two halves, sorts each half and then merges them. If the current piece is small (length ≤ 16), it uses insertion sort. If `array[middle] ≤ array[middle + 1]`, the two halves are already sorted, so merge is not needed.
 
 **Time / space complexity.**
 
@@ -277,41 +277,60 @@ Notes:
 
 ## D. Discussion
 
-**Do the results match theoretical complexity?**  
-Yes, in the main trend. MergeSort and random QuickSort grow slowly, like *n* log *n*. Recursion depth for balanced algorithms grows like log *n*. Deterministic Select does not explode to *n*². Closest Pair is far from quadratic on large *n*. Some points are noisy (MergeSort random at 50,000 is slower than at 100,000). This is not a contradiction of Big-O. It is JVM warm-up, garbage collection, and a single timed run.
+**Do the results match theoretical complexity?**
+Yes, mostly. MergeSort and QuickSort with random pivots generally grow like `n log n`. Their recursion depth also grows slowly, around `log n`.
+
+Deterministic Select does not show `n²` growth, and Closest Pair also performs much better than a quadratic solution for large inputs.
+
+Some results are not perfectly smooth. For example, one MergeSort test at 50,000 elements was slower than the test at 100,000. This can happen because of Java warm-up, garbage collection and other system activity.
+
 
 **How does input structure affect performance?**  
-Sorted arrays help MergeSort a lot (skip merge). Random pivot QuickSort still works well on sorted and reverse-sorted data, because the pivot is not always the last element. Many duplicates hurt QuickSort with a two-way `≤` partition. The same duplicates help Select, because equal values form a wide middle band. Closest Pair with many overlapping coordinates can change the strip, but depth stayed the same in this experiment.
+Different types of input can affect the algorithms differently.
 
-**Why does smaller-first recursion help QuickSort?**  
-The larger part is processed in a loop. The recursive call is always on a piece of size at most *n*/2. So the stack depth is O(log *n*) even when the split is bad. Without this, a bad split can make depth Θ(*n*) and can crash the JVM with `StackOverflowError`. Time can still be Θ(*n*²); only the stack is protected.
+Sorted arrays help MergeSort because it can skip some merge steps. QuickSort also works well with sorted and reverse-sorted arrays because it uses a random pivot.
 
-**Why does Median-of-Medians guarantee O(*n*)?**  
-The pivot is not random. At least about 30% of elements are on the wrong side of the median-of-medians and can be discarded. Together with a linear scan (groups of 5 + partition), the recurrence
+Many duplicate values can make QuickSort much slower. However, duplicates can help Select because many equal values can be processed together.
 
-$$
-T(n) \le T\left(\frac{n}{5}\right) + T\left(\frac{7n}{10}\right) + O(n)
-$$
+For Closest Pair, the positions of the points can change the work in the strip, but the recursion depth stayed the same in these tests.
 
-has a solution that is linear, as Akra–Bazzi shows:
+**Why does smaller-first recursion help QuickSort?**
+The algorithm uses recursion only for the smaller part and processes the larger part with a loop. This keeps the recursion depth at `O(log n)`.
 
-$$
-0.2 + 0.7 < 1
-$$
+Without this approach, a bad split could create very deep recursion, up to `O(n)`, and cause a `StackOverflowError`.
+
+The running time can still be `O(n²)` in the worst case. Only the recursion depth is reduced.
+
+
+**Why does Median-of-Medians guarantee O(n)?**
+Median-of-Medians chooses the pivot in a way that guarantees a good split. After choosing the pivot, at least about 30% of the elements can be removed from further consideration.
+
+The algorithm also spends only `O(n)` time to create the groups and partition the array.
+
+So, in each step, the problem becomes much smaller while the work done at that step is still linear. This gives the recurrence:
+
+`T(n) ≤ T(n/5) + T(7n/10) + O(n)`
+
+Because the two recursive parts together are smaller than the original problem (`0.2 + 0.7 = 0.9`), the total running time is `O(n)`.
+
 
 **Why is divide-and-conquer Closest Pair faster than O(*n*²) for large inputs?**  
 Brute force checks every pair. Divide-and-conquer only checks all pairs in tiny blocks and a strip. In the strip, *y*-order limits the inner loop to a constant number of neighbours. So extra work per level is O(*n*), and there are O(log *n*) levels.
 
 **What practical factors affect performance?**  
-The JVM needs warm-up (JIT). The first small runs can look slower than later larger runs. Garbage collection can pause a timed run, especially Closest Pair, which allocates many arrays and maps. CPU cache likes sequential MergeSort merges more than random QuickSort jumps. One measurement per size is noisy. GC, other processes, and timer precision all add variance. Also, extra instrumentation (counting comparisons) changes the constant factors.
+The results can be affected by several things. Java needs some time to warm up, so the first tests can be slower. Garbage collection can also slow down some tests. Other programs running on the computer can affect the results too.
+
+The tests are not always perfectly accurate because each test was run only once. Counting comparisons and other extra measurements can also make the algorithms slightly slower.
 
 ---
 
 ## E. Reflection
 
-I learned that theory and practice tell two parts of the same story. Recurrences and the Master Theorem (or Akra–Bazzi) explain the shape of the curves, but constants, input structure, and the JVM decide the real milliseconds. Implementing smaller-first QuickSort showed me that a small code change can protect the stack without changing the Big-O of the running time. Median-of-Medians showed why a “good enough” pivot is enough for a linear worst case. Closest Pair showed why geometry plus sorting can beat a simple double loop on large *n*.
+During the project, I focused on implementing algorithms correctly and testing them on different types of input. The main challenges were handling edge cases, debugging the algorithms and collecting reliable performance results.
 
-The main challenges were correctness details and measurement. MergeSort needed a shared buffer and a safe cutoff. Select needed a three-way partition and a careful index for *k*. Closest Pair needed stable *y*-lists for the left and right halves (identity of points, not only coordinates). Experiments were hard to interpret because one run is noisy and Closest Pair allocates a lot of memory. Tests with edge cases (empty arrays, duplicates, negative numbers, *n* = 100,000 points) helped me trust the implementations before I wrote this report.
+I tested random, sorted, reverse-sorted and duplicate-heavy inputs, as well as large input sizes. The experiments showed how different input types can affect execution time and recursion depth. Some measurements were also affected by JVM warm-up and other system processes.
+
+At the end, testing helped verify that the algorithms worked correctly and that the experimental results were generally consistent with the expected complexity.
 
 ---
 
