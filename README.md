@@ -279,53 +279,53 @@ Notes:
 
 **Do the results match theoretical complexity?**    
 
-Yes, mostly. MergeSort and QuickSort with random pivots generally grow like `n log n`. Their recursion depth also grows slowly, around `log n`.
+> Yes, mostly. MergeSort and QuickSort with random pivots generally grow like `n log n`. Their recursion depth also grows slowly, around `log n`.
 
-Deterministic Select does not show `n²` growth, and Closest Pair also performs much better than a quadratic solution for large inputs.
+> Deterministic Select does not show `n²` growth, and Closest Pair also performs much better than a quadratic solution for large inputs.
 
-Some results are not perfectly smooth. For example, one MergeSort test at 50,000 elements was slower than the test at 100,000. This can happen because of Java warm-up, garbage collection and other system activity.
+> Some results are not perfectly smooth. For example, one MergeSort test at 50,000 elements was slower than the test at 100,000. This can happen because of Java warm-up, garbage collection and other system activity.
 
 
 **How does input structure affect performance?**  
 
-Different types of input can affect the algorithms differently.
+> Different types of input can affect the algorithms differently.
 
-Sorted arrays help MergeSort because it can skip some merge steps. QuickSort also works well with sorted and reverse-sorted arrays because it uses a random pivot.
+> Sorted arrays help MergeSort because it can skip some merge steps. QuickSort also works well with sorted and reverse-sorted arrays because it uses a random pivot.
 
-Many duplicate values can make QuickSort much slower. However, duplicates can help Select because many equal values can be processed together.
+> Many duplicate values can make QuickSort much slower. However, duplicates can help Select because many equal values can be processed together.
 
-For Closest Pair, the positions of the points can change the work in the strip, but the recursion depth stayed the same in these tests.
+> For Closest Pair, the positions of the points can change the work in the strip, but the recursion depth stayed the same in these tests.
 
 **Why does smaller-first recursion help QuickSort?**    
 
-The algorithm uses recursion only for the smaller part and processes the larger part with a loop. This keeps the recursion depth at `O(log n)`.
+> The algorithm uses recursion only for the smaller part and processes the larger part with a loop. This keeps the recursion depth at `O(log n)`.
 
-Without this approach, a bad split could create very deep recursion, up to `O(n)`, and cause a `StackOverflowError`.
+> Without this approach, a bad split could create very deep recursion, up to `O(n)`, and cause a `StackOverflowError`.
 
-The running time can still be `O(n²)` in the worst case. Only the recursion depth is reduced.
+> The running time can still be `O(n²)` in the worst case. Only the recursion depth is reduced.
 
 **Why does Median-of-Medians guarantee O(n)?**  
 
-Median-of-Medians chooses the pivot in a way that guarantees a good split. After choosing the pivot, at least about 30% of the elements can be removed from further consideration.
+> Median-of-Medians chooses the pivot in a way that guarantees a good split. After choosing the pivot, at least about 30% of the elements can be removed from further consideration.
 
-The algorithm also spends only `O(n)` time to create the groups and partition the array.
+> The algorithm also spends only `O(n)` time to create the groups and partition the array.
 
-So, in each step, the problem becomes much smaller while the work done at that step is still linear. This gives the recurrence:
+> So, in each step, the problem becomes much smaller while the work done at that step is still linear. This gives the recurrence:
 
-`T(n) ≤ T(n/5) + T(7n/10) + O(n)`
+> `T(n) ≤ T(n/5) + T(7n/10) + O(n)`
 
-Because the two recursive parts together are smaller than the original problem (`0.2 + 0.7 = 0.9`), the total running time is `O(n)`.
+> Because the two recursive parts together are smaller than the original problem (`0.2 + 0.7 = 0.9`), the total running time is `O(n)`.
 
 
 **Why is divide-and-conquer Closest Pair faster than O(*n*²) for large inputs?**  
 
-Brute force checks every pair. Divide-and-conquer only checks all pairs in tiny blocks and a strip. In the strip, *y*-order limits the inner loop to a constant number of neighbours. So extra work per level is O(*n*), and there are O(log *n*) levels.
+> Brute force checks every pair. Divide-and-conquer only checks all pairs in tiny blocks and a strip. In the strip, *y*-order limits the inner loop to a constant number of neighbours. So extra work per level is O(*n*), and there are O(log *n*) levels.
 
 **What practical factors affect performance?**  
 
-The results can be affected by several things. Java needs some time to warm up, so the first tests can be slower. Garbage collection can also slow down some tests. Other programs running on the computer can affect the results too.
+> The results can be affected by several things. Java needs some time to warm up, so the first tests can be slower. Garbage collection can also slow down some tests. Other programs running on the computer can affect the results too.
 
-The tests are not always perfectly accurate because each test was run only once. Counting comparisons and other extra measurements can also make the algorithms slightly slower.
+> The tests are not always perfectly accurate because each test was run only once. Counting comparisons and other extra measurements can also make the algorithms slightly slower.
 
 ---
 
